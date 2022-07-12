@@ -4,8 +4,8 @@ let sendBtn = document.querySelector(".screen-input .send-btn")
 let screenChatArea = document.querySelector(".screen")
 let sender = "me"
 let msgNum = 0
-let myName = "(Not Set!)"
-let hisName = "(Not Set!)"
+let myName = "Fady"
+let hisName = "Peter" 
 
 let saveBtn = document.querySelector(".submit")
 let clearBtn = document.querySelector(".clear-chat")
@@ -20,8 +20,8 @@ let imageUploadBoxHim = document.querySelector(".image-choose-him")
 let senderImg = document.getElementById("sender-img")
 let senderIs = document.querySelector(".sender-name")
 
-let ImageChosenMe = localStorage.getItem("MyImage")
-let ImageChosenHim = localStorage.getItem("HisImage")
+let ImageChosenMe = localStorage.getItem("MyImage") || "Images/sender-me.jpg"
+let ImageChosenHim = localStorage.getItem("HisImage") || "Images/sender-him.jpg"
 
 localStorage.MyName  != null ? myName  = JSON.parse(localStorage.MyName)  : myName ;
 localStorage.HisName != null ? hisName = JSON.parse(localStorage.HisName) : hisName ;
@@ -40,6 +40,30 @@ localStorage.Messages != null ? allMessages = JSON.parse(localStorage.Messages) 
 
 // -------------------------------------------------------------------------
 // On load ( to get chat filled from localStorage )
+screenChatArea.innerHTML += `
+<div class="message-container send">
+    <div class="sender-image sender-me">
+        <img src="${ImageChosenMe}" alt="">
+    </div>
+    <div class="sender-name-box sender-me-name hidden"></div>
+    <div class="msg-and-date">
+        <h4 class="message">Welcome Friend</h4>
+        <p class="msg-date">10:00 AM</p>
+    </div>
+</div>
+<div class="message-container recieve">
+<div class="sender-image sender-him">
+    <img src="${ImageChosenHim}" alt="">
+</div>
+<div class="sender-name-box sender-him-name hidden"></div>
+<div class="msg-and-date">
+<h4 class="message">Try to type something</h4>
+<p class="msg-date">10:02 AM</p>
+</div>
+</div>
+
+
+`
 for (let i = 0 ; i < allMessages.length ; i++){
     var currentMsg = JSON.parse(localStorage.Messages)
     if (currentMsg[i].sender == "me"){
@@ -50,8 +74,8 @@ for (let i = 0 ; i < allMessages.length ; i++){
             </div>
             <div class="sender-name-box sender-me-name hidden"></div>
             <div class="msg-and-date">
-            <h4 class="message">${currentMsg[i].msg}</h4>
-            <p class="msg-date">${currentMsg[i].date}</p>
+                <h4 class="message">${currentMsg[i].msg}</h4>
+                <p class="msg-date">${currentMsg[i].date}</p>
             </div>
         </div>
         `);
@@ -63,8 +87,8 @@ for (let i = 0 ; i < allMessages.length ; i++){
             </div>
             <div class="sender-name-box sender-him-name hidden"></div>
             <div class="msg-and-date">
-            <h4 class="message">${currentMsg[i].msg}</h4>
-            <p class="msg-date">${currentMsg[i].date}</p>
+                <h4 class="message">${currentMsg[i].msg}</h4>
+                <p class="msg-date">${currentMsg[i].date}</p>
             <div>
         </div>
         `);
@@ -165,8 +189,8 @@ let sendMsg = function () {
                 </div>
                 <div class="sender-name-box sender-me-name hidden"></div>
                 <div class="msg-and-date">
-                <h4 class="message">${allMessages[allMessages.length-1].msg}</h4>
-                <p class="msg-date">${allMessages[allMessages.length-1].date}</p>
+                    <h4 class="message">${allMessages[allMessages.length-1].msg}</h4>
+                    <p class="msg-date">${allMessages[allMessages.length-1].date}</p>
                 <div>
             </div>
             `)
@@ -178,8 +202,8 @@ let sendMsg = function () {
                 </div>
                 <div class="sender-name-box sender-him-name hidden"></div>
                 <div class="msg-and-date">
-                <h4 class="message">${allMessages[allMessages.length-1].msg}</h4>
-                <p class="msg-date">${allMessages[allMessages.length-1].date}</p>
+                    <h4 class="message">${allMessages[allMessages.length-1].msg}</h4>
+                    <p class="msg-date">${allMessages[allMessages.length-1].date}</p>
                 <div>
             </div>
             `)
