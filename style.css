@@ -1,7 +1,7 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: #000;
-    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)) , url(Images/Background1.jpg) ; 
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)) , url(Images/Background1.jpg) ; 
     background-size: cover;
     height: 100vh;
     display: flex;
@@ -14,7 +14,6 @@ body {
     height: 90%;
     display: flex;
 }
-
 /* ---------------------------------------------------------------- */
 /* Phone Area */
 .phone-container {
@@ -25,20 +24,55 @@ body {
     align-items: center;
     position: relative;
 }
-.phone {
-    min-width: 350px;
-    height: 640px;
-    background-image: url(Images/screenBackground.jpg) ;
-    background-size: cover;
+.phone-border {
+    width: 365px;
+    height: 655px;
     border-radius: 25px;
-    border: 7px solid #fff;
-    position: relative;
+    background-color: #fff;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
     box-shadow: 10px 10px 20px rgba(0 0 0 / 0.4);
     transition: 0.5s;
 }
-.phone:hover {
-    transform: scale(1.02);
+.neon-light {
+    width: 800px;
+    height: 800px ;
+    background: linear-gradient(90deg ,rgb(168, 37, 255) ,rgb(30, 109, 255) );
+    position: absolute;
+    animation: neonRotate 3s linear infinite;
+}
+.neon-light-top {
+    margin-top: 550px;
+}
+@keyframes neonRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.phone {
+    min-width: 350px;
+    height: 640px;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.5s;
+    z-index: 1;
+}
+.phone-wallpaper {
+    width: 100%;
+    height: 100%;
+    background-image: url(Images/screenBackground.jpg);
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    filter: brightness(0.5);
+    z-index: -1;
 }
 /* Top bar */
 .top-bar {
@@ -54,19 +88,47 @@ body {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    overflow: hidden;
 }
 .top-bar .cam {
-    width: 7px;
-    height: 7px;
-    border: solid 4px #000;
-    background-color: #aaa;
+    width: 13px;
+    height: 13px;
+    background: linear-gradient(130deg ,#fff, #999 ,#222 , #000) ;
     border-radius: 50%;
+    border-top: solid 1px #222;
+    border-bottom: solid 1px #aaa;
+    border-left: solid 1px #666;
+    border-right: solid 1px #666;
+    transform: rotate(-30deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+.top-bar .cam .cam-inside {
+    width: 70%;
+    height: 70%;
+    border-radius: 50%;
+    background: linear-gradient(-30deg , #ccc , #000);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.top-bar .cam .cam-inside2 {
+    width: 40%;
+    height: 40%;
+    border-radius: 50%;
+    background-color: #ddd;
 }
 .top-bar .microphone {
     width: 60px;
     height: 8px;
     background-color: #000;
     border-radius: 10px;
+    line-height: 0;
+    color: #aaa;
+    text-align: center;
+    z-index: 1;
 }
 
 /* Top area */
@@ -132,7 +194,7 @@ body {
     flex-direction: column;
 }
 .screen .send .message{
-    background-color: rgb(142, 168, 252);
+    background-color: rgb(121, 179, 255);
     border-radius: 20px 20px 0 20px;
 }
 .screen .send {
@@ -150,8 +212,7 @@ body {
     transition: 0.3s;
 }
 .sender-image:hover {
-    filter: brightness(1.3);
-    transform: scale(1.1);
+    filter: brightness(1.4);
 }
 .sender-image img {
     width: 100%;
@@ -173,7 +234,6 @@ body {
     margin-top: 0;
     cursor: default;
 }
-
 /* Screen Input */
 .screen-input {
     width: 100%;
@@ -216,46 +276,34 @@ body {
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    transition: 0.3s ease-in-out;
+    position: relative;
+}
+#sender-img {
+    transition: 0.5s ease-in-out;
 }
 .screen-input .sender-image-bottom:hover {
-    filter: brightness(1.2);
+    filter: brightness(1.3);
+    transform: scale(1.2);
 }
 .sender-image-bottom img {
     width: 100%;
 }
-.sender-img-menu {
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    background-color: #fff;
-    top: -50px;
-    left: 3px;
-    border-radius: 5px;
-    overflow: hidden;
-}
-.sender-img-menu button {
-    width: 100%;
-    height: 50%;
-    cursor: pointer;
-    background-color: #222;
-    color: #fff;
+.circle-border {
+    width: 23px;
+    height: 23px;
+    background-color: transparent;
     border: solid 2px #fff;
-    border-radius: 5px;
-}
-.sender-img-menu button:hover {
-    filter: brightness(1.4);
-}
-.sender-img-menu .changeToMe {
-    border-radius: 5px 5px 0 0 ;
-}
-.sender-img-menu .changeToHim {
-    border-radius: 0 0 5px 5px ;
+    position: absolute;
+    border-radius: 50%;
+    left: 13px;
+    transition: 0.6s;
 }
 /* ----------------------------------------------------------- */
 /* Input Area (Right Side)*/
 
 .input-side {
-    width: 50%;
+    width: 40%;
     height: 100%;
     color: #fff;
     padding: 50px;
@@ -263,6 +311,11 @@ body {
     position: relative;
 }
 .sender-switch {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.sender-radio {
     display: flex;
     align-items: center;
 }
@@ -278,17 +331,16 @@ body {
     cursor: pointer;
 }
 .sender-switch p {
-    margin-left: 40px;
     opacity: 0.6;
     cursor: default;
 }
 .control-buttons button {
-    padding: 5px 20px;
+    padding: 7px 20px;
     border-radius: 20px;
     background-color: #111;
     border: solid 2px #aaa;
     color: #fff;
-    font-size: 20px;
+    font-size: 15px;
     cursor: pointer;
     transition: 0.3s;
     margin-right: 10px;
@@ -296,18 +348,79 @@ body {
 .control-buttons button:hover {
     transform: scale(1.1);
     background-color: #333;
-
 }
 .control-buttons {
     position: absolute;
     bottom: 70px;
 }
-
-/* remove verify pop up */
+/* Change Names*/
+.change-name-container {
+    display: flex;
+    justify-content: space-between;
+}
+.change-name-container div {
+    width: 50%;
+}
+.name-change {
+    width: 82%;
+    outline: none;
+    border: none;
+    height: 25px;
+    border-radius: 5px;
+    padding-left: 10px;
+    background-color: #333;
+    color: #fff;
+}
+.names-view {
+    display: flex;
+    cursor: default;
+}
+.names-view p {
+    width: 50%;
+    color: #aaa;
+    margin-top: 5px;
+    padding-left: 30px;
+}
+.image-upload {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.input-container button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #111;
+    border: 2px solid #888;
+    color: #ccc;
+    cursor: pointer;
+    transition: 0.2s;
+    position: relative;
+    width: 50%;
+    margin: 0 30px;
+}
+.input-container button:hover {
+    filter: brightness(1.4);
+    cursor: pointer;
+}
+.input-container button input{
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+.input-container .change-phone-wallpaper-btn {
+    width: 89%;
+    margin: 30px;
+    cursor: pointer;
+}
+/* Are You Sure? Message */
 .areYouSure {
     width: 40%;
-    height: 40%;
-    background-color: #fff;
+    height: 35%;
+    background-color: rgba(255, 255, 255, 0.7);
     position: absolute;
     border-radius: 20px;
     padding: 40px;
@@ -316,6 +429,10 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 11;
+}
+.areYouSure h1 {
+    cursor: default;
 }
 .areYouSure button {
     width: 80px;
@@ -326,86 +443,99 @@ body {
     background-color: #000;
     color: #fff;
     cursor: pointer;
+    transition: 0.3s;
 }
-
 .areYouSure button:hover{
     transform: scale(1.1);
 }
-
-
-/* Change Names */
-.name-change {
-    width: 28%;
-    margin-right: 20px;
-    outline: none;
-    border: none;
-    height: 25px;
-    border-radius: 5px;
-    padding-left: 10px;
-    background-color: #333;
-    color: #fff;
-}
-.names-view {
-    width: 77%;
-    display: flex;
-    cursor: default;
-}
-.names-view p {
-    width: 50%;
-    color: #aaa;
-    margin-top: 5px;
-    padding-left: 30px;
-}
-.image-upload button {
-    padding: 10px 20px;
-    border-radius: 5px;
-    background-color: #111;
-    border: 2px solid #888;
-    color: #ccc;
-    margin-left: 30px;
-    margin-right: 65px;
-    cursor: pointer;
-    transition: 0.3s;
-    position: relative;
-}
-.image-upload button:hover {
-    filter: brightness(1.2);
-    cursor: pointer;
-}
-.image-upload button input{
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100px;
-    cursor: pointer;
-
-}
-
-
-
+/* -------------------------------------------------------------------------------------------- */
+/* Media Query */
 @media (max-width: 900px){
     body {
         overflow-y: auto;
+        height: auto;
     }
     .big-container{
+        width: 100%;
         flex-direction: column;
+        margin: 20px 0;
     }
     .phone-container{
         width: 100%;
     }
-
-
-
+    .phone-border:hover {
+        transform: scale(1);
+    }
+    .input-side {
+        width: 100%;
+        padding: 10px;
+    }
+    .input-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .sender-radio label{
+        margin: 0 5px;
+    }
+    .sender-switch p {
+        display: none;
+    }
+    .control-buttons {
+        position: static;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .control-buttons button {
+        font-size: 15px;
+        padding: 5px 10px;
+        margin: 5px;
+    }
+    .change-name-container {
+        flex-direction: column;
+    }
+    .change-name-container div {
+        display: flex;
+        width: 100%;
+        margin-bottom: 20px;
+        justify-content: space-between;
+    }
+    .change-name-container input {
+        width: 200px;
+        margin-left: 10px;
+    }
+    .names-view p{
+        margin: 0;
+        padding: 0 10px;
+        width: auto;
+    }
+    .image-upload {
+        justify-content: center;
+    }
+    .image-upload button {
+        margin: 10px;
+        font-size: 15px;
+        max-width: 170px;
+    }
+    .input-container .change-phone-wallpaper-btn {
+        max-width: 350px;
+    }
+    .areYouSure {
+        margin-top: 200px;
+        width: 400px;
+        height: auto;
+    }
 }
-
-
 .hidden {
     display: none;
 }
 .page-cover {
     width: 100% ;
-    height: 100% ;
+    height: 150% ;
     background: rgba(0 0 0 / 0.8) ;
-    position: absolute
+    position: absolute ;
+    z-index: 10;
+    
 }
