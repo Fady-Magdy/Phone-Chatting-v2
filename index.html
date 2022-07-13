@@ -18,6 +18,9 @@
 <body> 
     <div class="big-container">
         <div class="phone-container">
+            <div class="switch-neon-light">
+                <button></button>
+            </div>
             <div class="phone-border">
                 <div class="neon-light"></div>
                 <div class="phone">
@@ -53,51 +56,56 @@
                 </div>
             </div>
         </div>
-        <div class="input-side">
-            <div class="input-container">
-                <h4>Choose message sender</h4>
-                <div class="sender-switch">
-                    <div class="sender-radio">
-                        <input class="me-radio" type="radio" name="sender" id="me" value="me">
-                        <label for="me">Me</label>
-                        <input class="him-radio" type="radio" name="sender" id="him" value="him">
-                        <label for="him">Him</label>
+        <div class="inputs-container">
+            <div class="input-side">
+                <div class="input-container">
+                    <h3>Choose Sender</h3>
+                    <div class="sender-switch">
+                        <div class="sender-radio">
+                            <input class="me-radio" type="radio" name="sender" id="me" value="me">
+                            <label for="me">Me</label>
+                            <input class="him-radio" type="radio" name="sender" id="him" value="him">
+                            <label for="him">Him</label>
+                        </div>
+                        <p>Click Ctrl to Switch</p>
+                        <p class="sender-name"></p>
                     </div>
-                    <p>Click Ctrl to Switch</p>
-                    <p class="sender-name"></p>
-                </div>
-                <h4>Change Names</h4>
-                <div class="change-name-container">
-                    <div>
-                        <label for="my-name">Me</label>
-                        <input id="my-name" type="text" class="name-change" placeholder="My Name">
-                        
+                    <hr>
+                    <h3>Change Names</h3>
+                    <div class="change-name-container">
+                        <div>
+                            <label for="my-name">Me</label>
+                            <input id="my-name" type="text" class="name-change" placeholder="My Name">
+                            
+                        </div>
+                        <div>
+                            <label for="his-name">Him</label>
+                            <input id="his-name" type="text" class="name-change" placeholder="His Name">
+                        </div>
                     </div>
-                    <div>
-                        <label for="his-name">Him</label>
-                        <input id="his-name" type="text" class="name-change" placeholder="His Name">
+                    <div class="names-view">
+                        <p class="names-view1"></p>
+                        <p class="names-view2"></p>
                     </div>
+                    <hr>
+                    <h3>Change Images</h3>
+                    <div class="image-upload">
+                        <button><input class="image-choose-me" type="file">Change My Image</button>
+                        <button><input class="image-choose-him" type="file">Change His Image</button>
+                    </div>
+                    <button class="change-phone-wallpaper-btn"><input class="change-phone-wallpaper-input" type="file">Change Phone Wallpaper</button>
                 </div>
-                <div class="names-view">
-                    <p class="names-view1"></p>
-                    <p class="names-view2"></p>
+                <div class="control-buttons">
+                    <button class="submit">Save</button>
+                    <button class="clear-chat">Clear Chat</button>
+                    <button class="clear-data">Clear Data</button>
+                    <a href="https://fady-magdy.github.io/Phone-Chatting-V1/" target="_blank">
+                        <button class="clear-chat">Old version</button>
+                    </a>
                 </div>
-                <h4>Change Images</h4>
-                <div class="image-upload">
-                    <button><input class="image-choose-me" type="file">Change My Image</button>
-                    <button><input class="image-choose-him" type="file">Change His Image</button>
-                </div>
-                <button class="change-phone-wallpaper-btn"><input class="change-phone-wallpaper-input" type="file">Change Phone Wallpaper</button>
-            </div>
-            <div class="control-buttons">
-                <button class="submit">Save</button>
-                <button class="clear-chat">Clear Chat</button>
-                <button class="clear-data">Clear Data</button>
-                <a href="https://fady-magdy.github.io/Phone-Chatting-V1/" target="_blank">
-                    <button class="clear-chat">Old version</button>
-                </a>
             </div>
         </div>
+        
     </div>
     <div class="page-cover hidden"></div>
     <div class="areYouSure hidden">

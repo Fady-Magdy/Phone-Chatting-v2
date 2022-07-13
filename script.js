@@ -20,6 +20,7 @@ let imageUploadBoxMe = document.querySelector(".image-choose-me")
 let imageUploadBoxHim = document.querySelector(".image-choose-him")
 let imageUploadBoxPhone = document.querySelector(".change-phone-wallpaper-input")
 let senderImg = document.getElementById("sender-img")
+let senderImage = document.querySelector("#sender-img")
 let senderIs = document.querySelector(".sender-name")
 
 let ImageChosenMe = localStorage.getItem("MyImage") || "Images/sender-me.jpg"
@@ -163,10 +164,11 @@ let sendMsg = function () {
         let minutes = time.getMinutes()
         let hours = time.getHours()
         let AmPm = "AM"
+        hours > 11?   AmPm = "PM" : AmPm = "AM"
         hours > 12?   hours -= 12             : hours
         hours < 10?   hours = "0" + hours     : hours
         minutes < 10? minutes = "0" + minutes : minutes
-        hours > 11? AmPm = "PM" : AmPm = "AM"
+
         let msgDate = `${hours}:${minutes} ${AmPm}`
         //  Messsage Data
         let msgData = { 
@@ -204,9 +206,30 @@ let sendMsg = function () {
             </div>
             `)
         }
+        let msgNowImageAll = document.querySelectorAll(".sender-image")
+        let msgNowImage = msgNowImageAll[msgNowImageAll.length - 1]
+        let msgNowAll = document.querySelectorAll(".msg-and-date")
+        let msgNow = msgNowAll[msgNowAll.length - 1]
+        msgNow.style.transform = "scalex(0)"
+        msgNowImage.style.opacity = "0"
+        msgNowImage.style.transition = "0.6s"
+        setTimeout(() => {
+            msgNowImage.style.opacity = "1"
+            msgNow.style.transform = "scalex(1)"
+        }, 50);
+        setTimeout(() => {
+            msgNowImage.style.transition = "0.2s"
+        }, 100);
         chatInput.value = ""
         screenChatArea.scrollTo(0, screenChatArea.scrollHeight)
         ShowNamesWhenTouchImage()
+    } else {
+        chatInput.style.border = "1px red solid"
+        sendBtn.style.background = "red"
+        setTimeout(() => {
+            chatInput.style.border = "1px solid transparent"
+            sendBtn.style.background = "#555"
+        }, 400);
     }
     chatInput.focus()
 }
@@ -222,7 +245,7 @@ chatInput.addEventListener("keyup" , (event) => {
 function switchSender() {
     let circleBorder = document.querySelector(".circle-border")
     senderImage.style.transform = "rotate(720deg)"
-    senderImage.parentElement.style.transform = "scale(1.4)"
+    senderImage.parentElement.style.transform = "scale(1.4) "
     senderImage.parentElement.style.filter = "brightness(1.5)"
     senderImage.parentElement.style.boxShadow = "0 0 3px 1px #fff"
     setTimeout(() => {
@@ -259,7 +282,7 @@ function switchSender() {
     }, 150);
 }
 // switch sender using Image
-let senderImage = document.querySelector("#sender-img")
+
 senderImage.addEventListener ("click" , ( ()=>{
     switchSender()
 }))
@@ -362,10 +385,8 @@ saveBtn.addEventListener("click" , () => {
     }else {
         document.querySelector(".sender-name").innerHTML = `Sender is: ${hisName}`
         document.querySelector(".sender-image-bottom img").setAttribute("src" , ImageChosenHim)
-    }
-    
+    }  
 })
-
 // Clear Chat
 let clearMessage = document.querySelector(".areYouSure")
 let pageBlackCover = document.querySelector(".page-cover")
@@ -376,9 +397,9 @@ clearChat.addEventListener("click" , () => {
     document.querySelector(".yes").addEventListener("click" , () => {
         localStorage.removeItem("Messages")
         msgNum = 0
-        screenChatArea.innerHTML = ""
         pageBlackCover.classList.add("hidden")
         clearMessage.classList.add("hidden")
+        location.reload()
     })
     document.querySelector(".no").addEventListener("click" , () => {
         pageBlackCover.classList.add("hidden")
@@ -402,4 +423,20 @@ clearData.addEventListener("click" , () => {
         clearMessage.classList.add("hidden")
     })
 
+})
+let turnNeonLightBtn = document.querySelector(".switch-neon-light button")
+let neonIsOn = true
+turnNeonLightBtn.addEventListener("click" , () => {
+
+    if (neonIsOn == true) {
+        turnNeonLightBtn.style.background = "white"
+        document.querySelector(".neon-light").style.opacity = "0"
+        document.querySelector(".neon-light-top").style.opacity = "0"
+        neonIsOn = false
+    } else {
+        turnNeonLightBtn.style.background = "rgb(201, 90, 252)"
+        document.querySelector(".neon-light").style.opacity = "1"
+        document.querySelector(".neon-light-top").style.opacity = "1"
+        neonIsOn = true
+    }
 })
